@@ -1,0 +1,18 @@
+# GitHub Pages configuration
+title: InfraLive Solutions
+description: AI & IT Infrastructure Consulting
+baseurl: "/infralive-consulting"
+url: "https://ai-agency-cx.github.io"
+
+# Build settings
+markdown: kramdown
+theme: null
+plugins: []
+
+# Exclude from processing
+exclude:
+  - .github/
+  - docs/
+  - .gitignore
+  - README.md
+  - .git/
