@@ -20,6 +20,18 @@
                     <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
                     <li class="nav-item"><a href="case-studies.html" class="nav-link">Case Studies</a></li>
                     <li class="nav-item"><a href="contact.html" class="nav-link btn-primary">Contact Us</a></li>
+                    <li class="nav-item search-container">
+                        <button class="search-toggle" aria-label="Search">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            </svg>
+                        </button>
+                        <div class="search-box">
+                            <input type="text" class="search-input" placeholder="Search pages..." aria-label="Search input">
+                            <div class="search-results"></div>
+                        </div>
+                    </li>
                 </ul>
             </nav>
             <div class="hamburger">
@@ -54,17 +66,48 @@
                 <h2 class="text-center">Our Expertise</h2>
                 <div class="grid grid-3">
                     <div class="card text-center">
-                        <div class="card-icon">🤖</div>
+                        <div class="card-icon">
+                            <svg class="icon icon-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                <path d="M2 17l10 5 10-5"/>
+                                <path d="M2 12l10 5 10-5"/>
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M18.5 9.5l1-2h1l1 2"/>
+                                <path d="M4.5 9.5l-1-2h-1l-1 2"/>
+                            </svg>
+                        </div>
                         <h3>AI Solutions</h3>
                         <p>Machine learning models and intelligent systems designed to automate processes and derive actionable insights.</p>
                     </div>
                     <div class="card text-center">
-                        <div class="card-icon">🌐</div>
+                        <div class="card-icon">
+                            <svg class="icon icon-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                                <line x1="12" y1="7" x2="12" y2="7.01"/>
+                                <line x1="8" y1="11" x2="8" y2="11.01"/>
+                                <line x1="16" y1="11" x2="16" y2="11.01"/>
+                                <line x1="8" y1="15" x2="8" y2="15.01"/>
+                                <line x1="12" y1="15" x2="12" y2="15.01"/>
+                                <line x1="16" y1="15" x2="16" y2="15.01"/>
+                                <path d="M7 2h10"/>
+                            </svg>
+                        </div>
                         <h3>Infrastructure</h3>
                         <p>End-to-end data center design, cloud architecture, and secure networking for mission-critical operations.</p>
                     </div>
                     <div class="card text-center">
-                        <div class="card-icon">💼</div>
+                        <div class="card-icon">
+                            <svg class="icon icon-tertiary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                <line x1="18" y1="12" x2="18" y2="12.01"/>
+                                <line x1="18" y1="16" x2="18" y2="16.01"/>
+                                <line x1="18" y1="20" x2="18" y2="20.01"/>
+                            </svg>
+                        </div>
                         <h3>IT Consulting</h3>
                         <p>Strategic technology planning and modernization services for public and private sectors.</p>
                     </div>
@@ -89,6 +132,7 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="services.html">Services</a></li>
+                        <li><a href="case-studies.html">Case Studies</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
@@ -97,7 +141,25 @@
                     <ul class="footer-links">
                         <li>Email: info@infralive.com</li>
                         <li>Phone: (555) 123-4567</li>
+                        <li>Address: 123 Tech Street, San Francisco, CA</li>
                     </ul>
+                </div>
+                <div>
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for updates on AI & infrastructure trends.</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <div class="form-group">
+                            <input type="email" class="newsletter-input" placeholder="Your email address" required aria-label="Email address for newsletter">
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" required>
+                                <span>I agree to receive updates (GDPR compliant)</span>
+                            </label>
+                        </div>
+                        <button type="submit" class="newsletter-btn">Subscribe</button>
+                        <div class="newsletter-message" id="newsletterMessage"></div>
+                    </form>
                 </div>
             </div>
             <div class="copyright">
