@@ -473,6 +473,328 @@ document.addEventListener('DOMContentLoaded', () => {
         lazyLoadImages();
     }
 
+    // ========== GOOGLE ANALYTICS 4 INTEGRATION ==========
+    function initGoogleAnalytics() {
+        // Replace with your actual GA4 measurement ID
+        const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // TODO: Replace with actual ID
+        
+        // Only initialize if not in development
+        if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+            // Load gtag.js
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+            document.head.appendChild(script);
+            
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', GA_MEASUREMENT_ID);
+            
+            // Track custom events
+            trackNewsletterSignups();
+            trackContactFormSubmissions();
+            trackPageViews();
+        }
+    }
+    
+    function trackNewsletterSignups() {
+        const newsletterForm = document.getElementById('newsletterForm');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', () => {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'newsletter_signup', {
+                        'event_category': 'engagement',
+                        'event_label': 'Newsletter Subscription'
+                    });
+                }
+            });
+        }
+    }
+    
+    function trackContactFormSubmissions() {
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', () => {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'contact_form_submission', {
+                        'event_category': 'lead',
+                        'event_label': 'Contact Form'
+                    });
+                }
+            });
+        }
+    }
+    
+    function trackPageViews() {
+        // Track virtual pageviews for single page applications
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                'page_title': document.title,
+                'page_location': window.location.href,
+                'page_path': window.location.pathname
+            });
+        }
+    }
+    
+    // Initialize Google Analytics
+    initGoogleAnalytics();
+
+    // ========== PERFORMANCE MONITORING ==========
+    function monitorPerformance() {
+        // Measure page load time
+        window.addEventListener('load', () => {
+            const timing = performance.timing;
+            const loadTime = timing.loadEventEnd - timing.navigationStart;
+            
+            console.log(`Page loaded in ${loadTime}ms`);
+            
+            // Send to analytics if load time is slow
+            if (loadTime > 3000 && typeof gtag !== 'undefined') {
+                gtag('event', 'slow_page_load', {
+                    'event_category': 'performance',
+                    'event_label': `Load time: ${loadTime}ms`,
+                    'value': loadTime
+                });
+            }
+        });
+        
+        // Monitor Core Web Vitals (simplified)
+        if ('PerformanceObserver' in window) {
+            try {
+                const observer = new PerformanceObserver((list) => {
+                    for (const entry of list.getEntries()) {
+                        console.log(`${entry.name}:`, entry.startTime);
+                    }
+                });
+                
+                observer.observe({ entryTypes: ['largest-contentful-paint', 'first-input', 'layout-shift'] });
+            } catch (e) {
+                // PerformanceObserver not supported
+            }
+        }
+    }
+    
+    // Start performance monitoring
+    monitorPerformance();
+
+    // ========== ACCESSIBILITY ENHANCEMENTS ==========
+    function enhanceAccessibility() {
+        // Add skip to content link
+        const skipLink = document.createElement('a');
+        skipLink.href = '#main-content';
+        skipLink.className = 'skip-to-content';
+        skipLink.textContent = 'Skip to main content';
+        skipLink.style.cssText = `
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--color-accent-1);
+            color: white;
+            padding: 8px;
+            z-index: 10000;
+        `;
+        skipLink.addEventListener('focus', function() {
+            this.style.top = '0';
+        });
+        skipLink.addEventListener('blur', function() {
+            this.style.top = '-40px';
+        });
+        
+        document.body.insertBefore(skipLink, document.body.firstChild);
+        
+        // Add main content id if not present
+        const mainContent = document.querySelector('main');
+        if (mainContent && !mainContent.id) {
+            mainContent.id = 'main-content';
+        }
+        
+        // Enhance focus visibility
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+        
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('keyboard-navigation');
+        });
+    }
+    
+    // Initialize accessibility enhancements
+    enhanceAccessibility();
+
+    // ========== ADVANCED MICRO-INTERACTIONS ==========
+    function initMicroInteractions() {
+        // Scroll-triggered animations
+        const animatedElements = document.querySelectorAll('.card, .section, .service-item');
+        
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            animatedElements.forEach(el => observer.observe(el));
+        }
+        
+        // Parallax effect for hero section
+        const hero = document.querySelector('.hero');
+        if (hero) {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+                hero.style.transform = `translate3d(0, ${rate}px, 0)`;
+            });
+        }
+        
+        // Animated counters
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const increment = target / 100;
+            let current = 0;
+            
+            const updateCounter = () => {
+                if (current < target) {
+                    current += increment;
+                    counter.textContent = Math.ceil(current);
+                    setTimeout(updateCounter, 20);
+                } else {
+                    counter.textContent = target;
+                }
+            };
+            
+            // Start counter when in view
+            const counterObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    updateCounter();
+                    counterObserver.unobserve(counter);
+                }
+            });
+            
+            counterObserver.observe(counter);
+        });
+        
+        // Hover effects for images
+        const images = document.querySelectorAll('img.hover-effect');
+        images.forEach(img => {
+            img.addEventListener('mouseenter', () => {
+                img.style.transform = 'scale(1.05)';
+                img.style.transition = 'transform 0.3s ease';
+            });
+            
+            img.addEventListener('mouseleave', () => {
+                img.style.transform = 'scale(1)';
+            });
+        });
+        
+        // Ripple effect for buttons
+        const buttons = document.querySelectorAll('.btn-ripple');
+        buttons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                const x = e.clientX - e.target.getBoundingClientRect().left;
+                const y = e.clientY - e.target.getBoundingClientRect().top;
+                
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+    }
+    
+    // Initialize micro-interactions
+    initMicroInteractions();
+    
+    // ========== ADD CSS FOR ANIMATIONS ==========
+    function addAnimationStyles() {
+        const style = document.createElement('style');
+        style.textContent = `
+            /* Scroll animations */
+            .animate-in {
+                animation: fadeInUp 0.6s ease forwards;
+            }
+            
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            /* Ripple effect */
+            .ripple {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.7);
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                pointer-events: none;
+            }
+            
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+            
+            /* Staggered animations */
+            .card:nth-child(1) { animation-delay: 0.1s; }
+            .card:nth-child(2) { animation-delay: 0.2s; }
+            .card:nth-child(3) { animation-delay: 0.3s; }
+            .card:nth-child(4) { animation-delay: 0.4s; }
+            .card:nth-child(5) { animation-delay: 0.5s; }
+            
+            /* Loading skeleton */
+            .skeleton {
+                background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+                background-size: 200% 100%;
+                animation: loading 1.5s infinite;
+            }
+            
+            @keyframes loading {
+                0% { background-position: 200% 0; }
+                100% { background-position: -200% 0; }
+            }
+            
+            /* Page transition */
+            .page-transition {
+                animation: pageFade 0.3s ease;
+            }
+            
+            @keyframes pageFade {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // Add animation styles
+    addAnimationStyles();
+
     // ========== ADD LOADING ANIMATION TO PAGE ==========
     document.body.classList.add('loaded');
+    
+    // Add page transition class
+    document.documentElement.classList.add('page-transition');
 });

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>About Us - InfraLive Solutions</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">InfraLive<span>Solutions</span></a>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link active">About Us</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="case-studies.html" class="nav-link">Case Studies</a></li>
+                                        <li class="nav-item"><a href="contact.html" class="nav-link btn-primary">Contact Us</a></li>
+                    <li class="nav-item search-container">
+                        <button class="search-toggle" aria-label="Search">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            </svg>
+                        </button>
+                        <div class="search-box">
+                            <input type="text" class="search-input" placeholder="Search pages..." aria-label="Search input">
+                            <div class="search-results"></div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section" style="background-color: var(--color-bg-white);">
+            <div class="container text-center">
+                <h1>About InfraLive Solutions</h1>
+                <p style="max-width: 800px; margin: 0 auto; margin-bottom: var(--spacing-md);">
+                    InfraLive Solutions is a boutique consultancy at the intersection of Artificial Intelligence and Critical Infrastructure. We serve government entities and forward-thinking enterprises.
+                </p>
+            </div>
+        </section>
+
+        <!-- Our Mission -->
+        <section class="section">
+            <div class="container">
+                <div class="grid grid-2" style="align-items: center;">
+                    <div>
+                        <h2 class="text-primary">Our Mission</h2>
+                        <p>To deliver resilient, intelligent technology ecosystems that empower organizations to operate efficiently and securely.</p>
+                        <br>
+                        <p>We believe that powerful software needs a robust foundation. By combining deep software engineering expertise with physical infrastructure knowledge, we provide holistic solutions that traditional siloed firms cannot.</p>
+                    </div>
+                    <div style="background-color: var(--color-secondary); height: 300px; border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; color: white;">
+                        <!-- Placeholder for Mission Image -->
+                        [Mission Image Placeholder]
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Team -->
+        <section class="section" style="background-color: var(--color-bg-white);">
+            <div class="container">
+                <h2 class="text-center" style="margin-bottom: var(--spacing-lg);">Leadership Team</h2>
+                <div class="grid grid-2">
+                    <!-- Software Lead Profile -->
+                    <div class="card text-center">
+                        <div style="width: 100px; height: 100px; background-color: var(--color-border); border-radius: 50%; margin: 0 auto var(--spacing-sm);"></div>
+                        <h3>Software Engineering Lead</h3>
+                        <p class="text-accent" style="font-weight: 500;">13+ Years Experience</p>
+                        <p style="margin-top: var(--spacing-sm);">Specializing in AI architectures, machine learning integration, and scalable software systems. Leads the development of intelligent applications that drive decision-making.</p>
+                    </div>
+
+                    <!-- Infrastructure Lead Profile -->
+                    <div class="card text-center">
+                        <div style="width: 100px; height: 100px; background-color: var(--color-border); border-radius: 50%; margin: 0 auto var(--spacing-sm);"></div>
+                        <h3>Infrastructure Specialist</h3>
+                        <p class="text-accent" style="font-weight: 500;">Network & Data Center Expert</p>
+                        <p style="margin-top: var(--spacing-sm);">Expert in data center design, secure network architecture, and physical IT infrastructure. Ensures the reliability and security of the systems that power your business.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>InfraLive Solutions</h4>
+                    <p>Building the digital backbone of tomorrow.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li>Email: info@infralive.com</li>
+                        <li>Phone: (555) 123-4567</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 InfraLive Solutions. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>
