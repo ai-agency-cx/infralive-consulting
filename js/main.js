@@ -792,9 +792,185 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add animation styles
     addAnimationStyles();
 
+    // ========== SERVICE WORKER REGISTRATION ==========
+    function registerServiceWorker() {
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registered successfully:', registration.scope);
+                        
+                        // Check for updates
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            console.log('ServiceWorker update found:', newWorker.state);
+                            
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    console.log('New content is available; please refresh.');
+                                    // Show update notification to user
+                                    showUpdateNotification();
+                                }
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed:', error);
+                    });
+            });
+            
+            // Listen for controller change
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                console.log('ServiceWorker controller changed');
+                window.location.reload();
+            });
+        }
+    }
+    
+    function showUpdateNotification() {
+        // Create update notification
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--gradient-accent);
+            color: white;
+            padding: 16px 24px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideIn 0.3s ease;
+        `;
+        
+        notification.innerHTML = `
+            <span>New version available!</span>
+            <button onclick="window.location.reload()" style="
+                background: white;
+                color: var(--color-accent-1);
+                border: none;
+                padding: 8px 16px;
+                border-radius: 6px;
+                font-weight: 600;
+                cursor: pointer;
+            ">Refresh</button>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Auto-remove after 10 seconds
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 10000);
+    }
+    
+    // Register service worker
+    registerServiceWorker();
+
+    // ========== PERFORMANCE METRICS COLLECTION ==========
+    function collectPerformanceMetrics() {
+        // Collect Core Web Vitals
+        if ('webVitals' in window) {
+            webVitals.getCLS(console.log);
+            webVitals.getFID(console.log);
+            webVitals.getLCP(console.log);
+        }
+        
+        // Collect custom metrics
+        const metrics = {
+            pageLoadTime: performance.timing.loadEventEnd - performance.timing.navigationStart,
+            domContentLoaded: performance.timing.domContentLoadedEventEnd - performance.timing.navigationStart,
+            firstPaint: performance.getEntriesByType('paint').find(entry => entry.name === 'first-paint')?.startTime || 0,
+            firstContentfulPaint: performance.getEntriesByType('paint').find(entry => entry.name === 'first-contentful-paint')?.startTime || 0,
+            timeToInteractive: performance.timing.domInteractive - performance.timing.navigationStart
+        };
+        
+        console.log('Performance metrics:', metrics);
+        
+        // Send to analytics if available
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'performance_metrics', {
+                'event_category': 'performance',
+                'event_label': 'Page Load',
+                'value': metrics.pageLoadTime,
+                'non_interaction': true
+            });
+        }
+    }
+    
+    // Collect metrics after page load
+    window.addEventListener('load', () => {
+        setTimeout(collectPerformanceMetrics, 1000);
+    });
+
+    // ========== ERROR TRACKING ==========
+    function setupErrorTracking() {
+        // Track JavaScript errors
+        window.addEventListener('error', (event) => {
+            const errorData = {
+                message: event.message,
+                filename: event.filename,
+                lineno: event.lineno,
+                colno: event.colno,
+                error: event.error?.stack
+            };
+            
+            console.error('JavaScript Error:', errorData);
+            
+            // Send to analytics if available
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'exception', {
+                    'description': event.message,
+                    'fatal': false
+                });
+            }
+        });
+        
+        // Track unhandled promise rejections
+        window.addEventListener('unhandledrejection', (event) => {
+            console.error('Unhandled Promise Rejection:', event.reason);
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'exception', {
+                    'description': 'Unhandled Promise Rejection: ' + event.reason,
+                    'fatal': false
+                });
+            }
+        });
+        
+        // Track resource loading errors
+        document.addEventListener('error', (event) => {
+            if (event.target.tagName === 'IMG' || event.target.tagName === 'SCRIPT' || event.target.tagName === 'LINK') {
+                console.error('Resource failed to load:', event.target.src || event.target.href);
+            }
+        }, true);
+    }
+    
+    // Setup error tracking
+    setupErrorTracking();
+
     // ========== ADD LOADING ANIMATION TO PAGE ==========
     document.body.classList.add('loaded');
     
     // Add page transition class
     document.documentElement.classList.add('page-transition');
+    
+    // Add animation for update notification
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
 });
