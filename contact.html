@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - InfraLive Solutions</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">InfraLive<span>Solutions</span></a>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="case-studies.html" class="nav-link">Case Studies</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link active btn-primary">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section" style="background-color: var(--color-bg-white);">
+            <div class="container text-center">
+                <h1>Contact Us</h1>
+                <p style="max-width: 600px; margin: 0 auto;">Have a challenge that needs solving? Reach out to our team of experts to discuss your AI and infrastructure needs.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="grid grid-2" style="align-items: flex-start;">
+                    <!-- Contact Information -->
+                    <div>
+                        <h2 class="text-primary">Get in Touch</h2>
+                        <p style="margin-bottom: var(--spacing-md);">We are available for consultations regarding government contracts, enterprise solutions, and partnership opportunities.</p>
+                        
+                        <div style="margin-bottom: var(--spacing-sm);">
+                            <h4 class="text-accent">Email</h4>
+                            <p><a href="mailto:info@infralive.com">info@infralive.com</a></p>
+                        </div>
+                        
+                        <div style="margin-bottom: var(--spacing-sm);">
+                            <h4 class="text-accent">Phone</h4>
+                            <p>(555) 123-4567</p>
+                        </div>
+
+                        <div style="margin-bottom: var(--spacing-sm);">
+                            <h4 class="text-accent">Location</h4>
+                            <p>Washington, D.C. Metro Area</p>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="card">
+                        <h3>Send us a Message</h3>
+                        <!-- TO ACTIVATE: Replace action URL with your Formspree endpoint -->
+                        <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" id="name" name="name" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" name="email" class="form-input" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="company" class="form-label">Company / Organization</label>
+                                <input type="text" id="company" name="company" class="form-input">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inquiry-type" class="form-label">Inquiry Type</label>
+                                <select id="inquiry-type" name="inquiry-type" class="form-select">
+                                    <option value="General">General Inquiry</option>
+                                    <option value="AI Solutions">AI Solutions</option>
+                                    <option value="Infrastructure">Infrastructure Services</option>
+                                    <option value="Consulting">Consulting</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea id="message" name="message" class="form-textarea" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                            <p id="form-status" style="margin-top: 10px; font-size: 0.9rem;"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>InfraLive Solutions</h4>
+                    <p>Building the digital backbone of tomorrow.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li>Email: info@infralive.com</li>
+                        <li>Phone: (555) 123-4567</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 InfraLive Solutions. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>
