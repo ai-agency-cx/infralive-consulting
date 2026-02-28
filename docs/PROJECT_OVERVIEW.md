@@ -1,8 +1,8 @@
-# InfraLive Consulting Site - Project Overview
+# Infralyze Consulting Site - Project Overview
 
 ## Project Information
-- **Project Name:** InfraLive Solutions Consulting Website
-- **Repository:** To be created (ai-agency-cx/infralive-consulting)
+- **Project Name:** Infralyze Solutions Consulting Website
+- **Repository:** https://github.com/ai-agency-cx/infralyze-consulting
 - **Type:** Static HTML/CSS/JS Website
 - **Status:** Analysis & Redesign Phase
 

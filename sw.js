@@ -1,8 +1,8 @@
-// Service Worker for InfraLive Solutions
+// Service Worker for Infralyze Solutions
 // Version: 1.0.0
-// Cache: infralive-v1
+// Cache: infralyze-v1
 
-const CACHE_NAME = 'infralive-v1';
+const CACHE_NAME = 'infralyze-v1';
 const OFFLINE_URL = '/offline.html';
 
 // Assets to cache immediately
@@ -154,7 +154,7 @@ async function submitPendingForms() {
 // Push notifications
 self.addEventListener('push', event => {
   const options = {
-    body: event.data ? event.data.text() : 'New update from InfraLive Solutions',
+    body: event.data ? event.data.text() : 'New update from Infralyze Solutions',
     icon: '/assets/icon-192x192.png',
     badge: '/assets/badge-72x72.png',
     vibrate: [100, 50, 100],
@@ -177,7 +177,7 @@ self.addEventListener('push', event => {
   };
   
   event.waitUntil(
-    self.registration.showNotification('InfraLive Solutions', options)
+    self.registration.showNotification('Infralyze Solutions', options)
   );
 });
 

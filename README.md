@@ -1,9 +1,9 @@
-# InfraLive Solutions Consulting Website
+# Infralyze Solutions Consulting Website
 
-Professional consulting website for InfraLive Solutions - AI & IT Infrastructure services.
+Professional consulting website for Infralyze Solutions - AI & IT Infrastructure services.
 
 ## Live Site
-[https://ai-agency-cx.github.io/infralive-consulting/](https://ai-agency-cx.github.io/infralive-consulting/)
+[https://ai-agency-cx.github.io/infralyze-consulting/](https://ai-agency-cx.github.io/infralyze-consulting/)
 
 ## Features
 - Responsive design for all devices
@@ -20,7 +20,7 @@ Professional consulting website for InfraLive Solutions - AI & IT Infrastructure
 
 ## Project Structure
 ```
-infralive-consulting/
+infralyze-consulting/
 ├── index.html          # Home page
 ├── about.html          # About Us page
 ├── services.html       # Services page
@@ -50,4 +50,4 @@ This site is automatically deployed to GitHub Pages when changes are pushed to t
 - **@pm:** Project management and deployment
 
 ## License
-© 2026 InfraLive Solutions. All rights reserved.
+© 2026 Infralyze Solutions. All rights reserved.
