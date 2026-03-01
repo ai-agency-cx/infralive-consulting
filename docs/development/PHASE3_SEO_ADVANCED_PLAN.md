@@ -2,7 +2,7 @@
 
 ## Document Information
 - **Author:** @dev
-- **Project:** InfraLive Consulting Site
+- **Project:** Infralyze Consulting Site
 - **Phase:** 3 - SEO Optimization & Advanced Features
 - **Start Date:** 2026-02-27
 - **Status:** IN PROGRESS

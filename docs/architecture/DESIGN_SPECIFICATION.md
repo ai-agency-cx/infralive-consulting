@@ -1,4 +1,4 @@
-# InfraLive Consulting Site - Design Specification
+# Infralyze Consulting Site - Design Specification
 
 ## Document Information
 - **Author:** @architect

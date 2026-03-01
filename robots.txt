@@ -1,4 +1,4 @@
-# Robots.txt for InfraLive Solutions
+# Robots.txt for Infralyze Solutions
 User-agent: *
 Allow: /
 Disallow: /admin/
@@ -6,10 +6,10 @@ Disallow: /private/
 Disallow: /tmp/
 
 # Sitemap location
-Sitemap: https://ai-agency-cx.github.io/infralive-consulting/sitemap.xml
+Sitemap: https://ai-agency-cx.github.io/Infralyze-consulting/sitemap.xml
 
 # Crawl delay (requests per second)
 Crawl-delay: 1
 
 # Preferred host (canonical URL)
-Host: https://ai-agency-cx.github.io/infralive-consulting/
+Host: https://ai-agency-cx.github.io/Infralyze-consulting/

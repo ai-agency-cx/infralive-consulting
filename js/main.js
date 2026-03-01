@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const platform = button.getAttribute('data-platform');
                 const url = encodeURIComponent(window.location.href);
                 const title = encodeURIComponent(document.title);
-                const text = encodeURIComponent('Check out InfraLive Solutions');
+                const text = encodeURIComponent('Check out Infralyze Solutions');
                 
                 let shareUrl = '';
                 
@@ -258,19 +258,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const socialLinks = document.createElement('div');
             socialLinks.className = 'social-links';
             socialLinks.innerHTML = `
-                <a href="https://twitter.com/infralive" class="social-link" target="_blank" rel="noopener" aria-label="Twitter">
+                <a href="https://twitter.com/Infralyze" class="social-link" target="_blank" rel="noopener" aria-label="Twitter">
                     <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
                     </svg>
                 </a>
-                <a href="https://linkedin.com/company/infralive" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <a href="https://linkedin.com/company/Infralyze" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
                     <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
                         <rect x="2" y="9" width="4" height="12"/>
                         <circle cx="4" cy="4" r="2"/>
                     </svg>
                 </a>
-                <a href="https://github.com/infralive" class="social-link" target="_blank" rel="noopener" aria-label="GitHub">
+                <a href="https://github.com/Infralyze" class="social-link" target="_blank" rel="noopener" aria-label="GitHub">
                     <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
                     </svg>
@@ -346,13 +346,13 @@ document.addEventListener('DOMContentLoaded', () => {
             {
                 title: 'Home',
                 url: 'index.html',
-                description: 'InfraLive Solutions homepage - AI & IT Infrastructure consulting',
+                description: 'Infralyze Solutions homepage - AI & IT Infrastructure consulting',
                 keywords: ['home', 'main', 'landing']
             },
             {
                 title: 'About Us',
                 url: 'about.html',
-                description: 'Learn about InfraLive Solutions - Our mission, team, and expertise',
+                description: 'Learn about Infralyze Solutions - Our mission, team, and expertise',
                 keywords: ['about', 'company', 'team', 'mission', 'values']
             },
             {
@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
             {
                 title: 'Contact Us',
                 url: 'contact.html',
-                description: 'Get in touch with InfraLive Solutions',
+                description: 'Get in touch with Infralyze Solutions',
                 keywords: ['contact', 'get in touch', 'email', 'phone', 'support']
             }
         ];
@@ -792,9 +792,185 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add animation styles
     addAnimationStyles();
 
+    // ========== SERVICE WORKER REGISTRATION ==========
+    function registerServiceWorker() {
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registered successfully:', registration.scope);
+                        
+                        // Check for updates
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            console.log('ServiceWorker update found:', newWorker.state);
+                            
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    console.log('New content is available; please refresh.');
+                                    // Show update notification to user
+                                    showUpdateNotification();
+                                }
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed:', error);
+                    });
+            });
+            
+            // Listen for controller change
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                console.log('ServiceWorker controller changed');
+                window.location.reload();
+            });
+        }
+    }
+    
+    function showUpdateNotification() {
+        // Create update notification
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--gradient-accent);
+            color: white;
+            padding: 16px 24px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideIn 0.3s ease;
+        `;
+        
+        notification.innerHTML = `
+            <span>New version available!</span>
+            <button onclick="window.location.reload()" style="
+                background: white;
+                color: var(--color-accent-1);
+                border: none;
+                padding: 8px 16px;
+                border-radius: 6px;
+                font-weight: 600;
+                cursor: pointer;
+            ">Refresh</button>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Auto-remove after 10 seconds
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 10000);
+    }
+    
+    // Register service worker
+    registerServiceWorker();
+
+    // ========== PERFORMANCE METRICS COLLECTION ==========
+    function collectPerformanceMetrics() {
+        // Collect Core Web Vitals
+        if ('webVitals' in window) {
+            webVitals.getCLS(console.log);
+            webVitals.getFID(console.log);
+            webVitals.getLCP(console.log);
+        }
+        
+        // Collect custom metrics
+        const metrics = {
+            pageLoadTime: performance.timing.loadEventEnd - performance.timing.navigationStart,
+            domContentLoaded: performance.timing.domContentLoadedEventEnd - performance.timing.navigationStart,
+            firstPaint: performance.getEntriesByType('paint').find(entry => entry.name === 'first-paint')?.startTime || 0,
+            firstContentfulPaint: performance.getEntriesByType('paint').find(entry => entry.name === 'first-contentful-paint')?.startTime || 0,
+            timeToInteractive: performance.timing.domInteractive - performance.timing.navigationStart
+        };
+        
+        console.log('Performance metrics:', metrics);
+        
+        // Send to analytics if available
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'performance_metrics', {
+                'event_category': 'performance',
+                'event_label': 'Page Load',
+                'value': metrics.pageLoadTime,
+                'non_interaction': true
+            });
+        }
+    }
+    
+    // Collect metrics after page load
+    window.addEventListener('load', () => {
+        setTimeout(collectPerformanceMetrics, 1000);
+    });
+
+    // ========== ERROR TRACKING ==========
+    function setupErrorTracking() {
+        // Track JavaScript errors
+        window.addEventListener('error', (event) => {
+            const errorData = {
+                message: event.message,
+                filename: event.filename,
+                lineno: event.lineno,
+                colno: event.colno,
+                error: event.error?.stack
+            };
+            
+            console.error('JavaScript Error:', errorData);
+            
+            // Send to analytics if available
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'exception', {
+                    'description': event.message,
+                    'fatal': false
+                });
+            }
+        });
+        
+        // Track unhandled promise rejections
+        window.addEventListener('unhandledrejection', (event) => {
+            console.error('Unhandled Promise Rejection:', event.reason);
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'exception', {
+                    'description': 'Unhandled Promise Rejection: ' + event.reason,
+                    'fatal': false
+                });
+            }
+        });
+        
+        // Track resource loading errors
+        document.addEventListener('error', (event) => {
+            if (event.target.tagName === 'IMG' || event.target.tagName === 'SCRIPT' || event.target.tagName === 'LINK') {
+                console.error('Resource failed to load:', event.target.src || event.target.href);
+            }
+        }, true);
+    }
+    
+    // Setup error tracking
+    setupErrorTracking();
+
     // ========== ADD LOADING ANIMATION TO PAGE ==========
     document.body.classList.add('loaded');
     
     // Add page transition class
     document.documentElement.classList.add('page-transition');
+    
+    // Add animation for update notification
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
 });

@@ -3,7 +3,7 @@
 
 FOOTER_CONTENT='            <div class="footer-grid">
                 <div>
-                    <h4>InfraLive Solutions</h4>
+                    <h4>Infralyze Solutions</h4>
                     <p>Building the digital backbone of tomorrow.</p>
                 </div>
                 <div>
@@ -19,7 +19,7 @@ FOOTER_CONTENT='            <div class="footer-grid">
                 <div>
                     <h4>Contact</h4>
                     <ul class="footer-links">
-                        <li>Email: info@infralive.com</li>
+                        <li>Email: info@Infralyze.com</li>
                         <li>Phone: (555) 123-4567</li>
                         <li>Address: 123 Tech Street, San Francisco, CA</li>
                     </ul>
@@ -44,15 +44,15 @@ FOOTER_CONTENT='            <div class="footer-grid">
             </div>'
 
 # Update about.html
-sed -i '/<footer class="footer">/,/<\/footer>/c\<footer class="footer">\n    <div class="container">\n'"$FOOTER_CONTENT"'\n        <div class="copyright">\n            &copy; 2026 InfraLive Solutions. All rights reserved.\n        </div>\n    </div>\n</footer>' about.html
+sed -i '/<footer class="footer">/,/<\/footer>/c\<footer class="footer">\n    <div class="container">\n'"$FOOTER_CONTENT"'\n        <div class="copyright">\n            &copy; 2026 Infralyze Solutions. All rights reserved.\n        </div>\n    </div>\n</footer>' about.html
 
 # Update services.html
-sed -i '/<footer class="footer">/,/<\/footer>/c\<footer class="footer">\n    <div class="container">\n'"$FOOTER_CONTENT"'\n        <div class="copyright">\n            &copy; 2026 InfraLive Solutions. All rights reserved.\n        </div>\n    </div>\n</footer>' services.html
+sed -i '/<footer class="footer">/,/<\/footer>/c\<footer class="footer">\n    <div class="container">\n'"$FOOTER_CONTENT"'\n        <div class="copyright">\n            &copy; 2026 Infralyze Solutions. All rights reserved.\n        </div>\n    </div>\n</footer>' services.html
 
 # Update case-studies.html
-sed -i '/<footer class="footer">/,/<\/footer>/c\<footer class="footer">\n    <div class="container">\n'"$FOOTER_CONTENT"'\n        <div class="copyright">\n            &copy; 2026 InfraLive Solutions. All rights reserved.\n        </div>\n    </div>\n</footer>' case-studies.html
+sed -i '/<footer class="footer">/,/<\/footer>/c\<footer class="footer">\n    <div class="container">\n'"$FOOTER_CONTENT"'\n        <div class="copyright">\n            &copy; 2026 Infralyze Solutions. All rights reserved.\n        </div>\n    </div>\n</footer>' case-studies.html
 
 # Update contact.html
-sed -i '/<footer class="footer">/,/<\/footer>/c\<footer class="footer">\n    <div class="container">\n'"$FOOTER_CONTENT"'\n        <div class="copyright">\n            &copy; 2026 InfraLive Solutions. All rights reserved.\n        </div>\n    </div>\n</footer>' contact.html
+sed -i '/<footer class="footer">/,/<\/footer>/c\<footer class="footer">\n    <div class="container">\n'"$FOOTER_CONTENT"'\n        <div class="copyright">\n            &copy; 2026 Infralyze Solutions. All rights reserved.\n        </div>\n    </div>\n</footer>' contact.html
 
 echo "Footer updated in all HTML files"
