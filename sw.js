@@ -3,20 +3,20 @@
 // Cache: infralyze-v1
 
 const CACHE_NAME = 'infralyze-v1';
-const OFFLINE_URL = '/offline.html';
+const OFFLINE_URL = '/infralyze-consulting/offline.html';
 
 // Assets to cache immediately
 const PRECACHE_ASSETS = [
-  '/',
-  '/index.html',
-  '/about.html',
-  '/services.html',
-  '/case-studies.html',
-  '/contact.html',
-  '/css/style.css',
-  '/js/main.js',
-  '/assets/site.webmanifest',
-  '/favicon.ico'
+  '/infralyze-consulting/',
+  '/infralyze-consulting/index.html',
+  '/infralyze-consulting/about.html',
+  '/infralyze-consulting/services.html',
+  '/infralyze-consulting/case-studies.html',
+  '/infralyze-consulting/contact.html',
+  '/infralyze-consulting/css/style.css',
+  '/infralyze-consulting/js/main.js',
+  '/infralyze-consulting/assets/site.webmanifest',
+  '/infralyze-consulting/favicon.ico'
 ];
 
 // Install event - precache critical assets
